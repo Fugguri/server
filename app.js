@@ -37,6 +37,9 @@ const bot = new TelegramBot(TELEGRAM_API_TOKEN, opt);
  * К сообщению с игрой можно прикрепить кнопку для начала игры
  * и кнопку для отправки её друзьям, мы реализуем обе
  */
+
+bot.on("polling_error", (msg) => console.log(msg));
+
 bot.on("message", (msg) => {
   const { id } = msg.chat;
 
