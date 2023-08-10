@@ -36,10 +36,10 @@ const initializeGame = (sio, socket) => {
 
     gameSocket.on('request username', requestUserName)
 
-    
-    
+
+
     // update database aafter game is end
-    gameSocket.on('gameEnd', gameEnd)
+    // gameSocket.on('gameEnd', gameEnd)
 
     gameSocket.on('recieved userName', recievedUserName)
 
