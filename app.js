@@ -2,7 +2,7 @@ const express = require('express')
 const http = require('http')
 const gameLogic = require('./game-logic')
 const app = express()
-const port = process.env.PORT || 80
+const port = process.env.PORT || 8000
 
 const TelegramBot = require("node-telegram-bot-api");
 
@@ -88,12 +88,7 @@ bot.on("callback_query", (query) => {
 
 
 const server = app.listen(port)
-const io = require('socket.io').listen(server, {
-  cors: {
-    origin: "https://a29f0d485b3e.vps.myjino.ru",
-    methods: ["GET", "POST"]
-  }
-});
+const io = require('socket.io').listen(server)
 
 // get the gameID encoded in the URL. 
 // check to see if that gameID matches with all the games currently in session. 
