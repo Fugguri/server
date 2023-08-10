@@ -1,10 +1,10 @@
-const app = express()
-const http = require('http')
 const express = require('express')
+const http = require('http')
 const gameLogic = require('./game-logic')
 const TelegramBot = require("node-telegram-bot-api");
 const port = process.env.PORT || 80
 
+const app = express()
 
 
 
