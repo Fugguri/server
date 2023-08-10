@@ -2,7 +2,7 @@ const express = require('express')
 const http = require('http')
 const gameLogic = require('./game-logic')
 const app = express()
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 80
 
 const TelegramBot = require("node-telegram-bot-api");
 
@@ -90,7 +90,7 @@ bot.on("callback_query", (query) => {
 const server = app.listen(port)
 const io = require('socket.io').listen(server, {
   cors: {
-    origin: "http://localhost:8080",
+    origin: "https://a29f0d485b3e.vps.myjino.ru",
     methods: ["GET", "POST"]
   }
 });
