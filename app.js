@@ -1,10 +1,10 @@
-const express = require('express')
-const http = require('http')
-const gameLogic = require('./game-logic')
 const app = express()
-const port = process.env.PORT || 8000
-
+const http = require('http')
+const express = require('express')
+const gameLogic = require('./game-logic')
 const TelegramBot = require("node-telegram-bot-api");
+const port = process.env.PORT || 80
+
 
 
 
@@ -26,17 +26,14 @@ const TelegramBot = require("node-telegram-bot-api");
 
 const TELEGRAM_API_TOKEN = "6424817107:AAHJOZDjjMEnnRzbmI6Y5gfFTqIOmF7iU0E"
 const GAME_URL = "https://99605bb2fc3e.vps.myjino.ru/"
-// const GAME_URL = "http://localhost:3000"
 const GAME_NAME = "chess"
 
-let opt = { polling: true };
+
 let queries = {}
+
+let opt = { polling: true };
+
 const bot = new TelegramBot(TELEGRAM_API_TOKEN, opt);
-/**
- * На каждое сообщение боту отвечаем нашей игрой.
- * К сообщению с игрой можно прикрепить кнопку для начала игры
- * и кнопку для отправки её друзьям, мы реализуем обе
- */
 
 bot.on("polling_error", (msg) => console.log(msg));
 
@@ -61,10 +58,6 @@ bot.on("message", (msg) => {
   })
 });
 
-/**
- * Ответ на запросы inline_query позволит нам отправлять игру друзьям в любом чате,
- * просто написав в поле ввода сообщений юзернейм бота с игрой
- */
 bot.on("inline_query", (query) => {
   bot.answerInlineQuery(query.id, [{
     type: "game",
@@ -73,18 +66,11 @@ bot.on("inline_query", (query) => {
   }])
 });
 
-/**
- * При нажатии на кнопку «Играть» выдаём пользователю 
- * специально помеченную ссылку на игру — так мы будем знать, 
- * кто именно и из какого чата сейчас играет в игру
- */
 bot.on("callback_query", (query) => {
   queries[query.id] = query;
 
   bot.answerCallbackQuery(query.id, { url: `${GAME_URL}?id=${query.id}` });
 });
-
-
 
 
 const server = app.listen(port)
