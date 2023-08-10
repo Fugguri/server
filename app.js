@@ -88,7 +88,12 @@ bot.on("callback_query", (query) => {
 
 
 const server = app.listen(port)
-const io = require('socket.io').listen(server)
+const io = require('socket.io').listen(server, {
+  cors: {
+    origin: "http://localhost:8080",
+    methods: ["GET", "POST"]
+  }
+});
 
 // get the gameID encoded in the URL. 
 // check to see if that gameID matches with all the games currently in session. 
