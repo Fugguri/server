@@ -29,7 +29,9 @@ const GAME_URL = "https://99605bb2fc3e.vps.myjino.ru/"
 // const GAME_URL = "http://localhost:3000"
 const GAME_NAME = "chess"
 
-const bot = new TelegramBot(TELEGRAM_API_TOKEN, { polling: true });
+let opt = { polling: true };
+
+const bot = new TelegramBot(TELEGRAM_API_TOKEN, opt);
 /**
  * На каждое сообщение боту отвечаем нашей игрой.
  * К сообщению с игрой можно прикрепить кнопку для начала игры
