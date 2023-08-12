@@ -59,12 +59,14 @@ bot.on("message", (msg) => {
 });
 
 bot.on("inline_query", (query) => {
-  console.log(query)
-  bot.answerInlineQuery(query.id, [{
+  let inline_message = bot.answerInlineQuery(query.id, [{
     type: "game",
     id: "GAME_NAME",
     game_short_name: GAME_NAME,
   }])
+
+  console.log(inline_message)
+
 });
 
 bot.on("callback_query", (query) => {
