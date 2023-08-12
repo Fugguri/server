@@ -59,7 +59,7 @@ bot.on("message", (msg) => {
 });
 
 bot.on("inline_query", (query) => {
-  console.log(query)
+  console.log(query, 123)
   bot.answerInlineQuery(query.id, [{
     type: "game",
     id: GAME_NAME,
