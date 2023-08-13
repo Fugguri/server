@@ -36,6 +36,7 @@ const initializeGame = (sio, socket) => {
 
     gameSocket.on('request username', requestUserName)
 
+    gameSocket.on('isGameExist', isGameExist)
 
 
     // update database aafter game is end
@@ -109,7 +110,7 @@ function createNewGame(gameId) {
     this.join(gameId)
 }
 
-function siGameExist(gameId) {
+function isGameExist(gameId) {
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
     this.emit('createNewGame', { gameId: gameId, mySocketId: this.id });
 
