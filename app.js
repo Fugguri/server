@@ -71,8 +71,14 @@ bot.on("inline_query", (query) => {
 
 bot.on("callback_query", (query) => {
   console.log(query)
-  queries[query.id] = query;
-  bot.answerCallbackQuery(query.id, { url: `${GAME_URL}new/${query.id}/${query.from.username}/` });
+  let gameId = ""
+
+  try {
+    gameId = queries[query.chat_instance]
+  } catch {
+    gameId = queries[query.chat_instance] = uuid_v4()
+  }
+  bot.answerCallbackQuery(query.id, { url: `${GAME_URL}new/${gameId}/${query.from.username}/` });
 });
 
 
