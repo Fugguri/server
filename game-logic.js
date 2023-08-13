@@ -25,7 +25,7 @@ const findRoom = (room) => {
 
     console.log("room is", room)
     const isExist = rooms.find((r) => r.roomId === roomId)
-    return { isExist: !!isExist, creator: creator }
+    return { isExist: !!isExist, creator: isExist }
 }
 
 const initializeGame = (sio, socket) => {
