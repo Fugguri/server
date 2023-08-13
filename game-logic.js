@@ -13,7 +13,7 @@ const addRoom = (room) => {
     const roomId = room.roomId
     const creator = room.creator
 
-    const isExist = rooms.find((r) => r.roomId === roomId)
+    const isExist = rooms.find((r) => r.roomId === roomId && r.creator === creator)
 
     !isExist && rooms.push(room)
     return { isExist: !!isExist, creator: creator }
@@ -125,7 +125,7 @@ function createNewGame(data) {
     addRoom({ gameId: data.gameId, creator: data.creator })
     // Join the Room and wait for the other player
     this.join(data.gameId)
-    console.log(rooms)
+
 }
 
 function isGameExist(data) {
