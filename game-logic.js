@@ -116,11 +116,11 @@ function playerJoinsGame(idData) {
 }
 
 
-function createNewGame(gameId, userName) {
+function createNewGame(data) {
 
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
-    this.emit('createNewGame', { gameId: gameId, userName: userName, mySocketId: this.id });
-    addRoom({ gameId: gameId, creator: userName })
+    this.emit('createNewGame', { gameId: data.gameId, userName: data.creator, mySocketId: this.id });
+    addRoom({ gameId: data.gameId, creator: data.creator })
     // Join the Room and wait for the other player
     this.join(gameId)
     console.log(rooms)
