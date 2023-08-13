@@ -23,8 +23,8 @@ const findRoom = (room) => {
     const roomId = room.roomId
     const creator = room.userName
 
-    console.log("room is", room)
     const isExist = rooms.find((r) => r.roomId === roomId)
+    console.log(isExist)
     return { isExist: !!isExist, creator: isExist }
 }
 
@@ -65,7 +65,6 @@ const initializeGame = (sio, socket) => {
     // register event listeners for video chat app:
     // videoChatBackend()
 }
-
 
 function videoChatBackend() {
     // main function listeners
@@ -116,7 +115,6 @@ function playerJoinsGame(idData) {
         this.emit('status', "There are already 2 people playing in this room.");
     }
 }
-
 
 function createNewGame(data) {
 
