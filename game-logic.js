@@ -1,5 +1,4 @@
 
-
 /**
  * Here is where we should register event listeners and emitters. 
  */
@@ -8,7 +7,24 @@ var io
 var gameSocket
 // gamesInSession stores an array of all active socket connections
 var gamesInSession = []
+let rooms = []
 
+const addRoom = (room) => {
+    const roomId = room.roomId
+    const creator = room.creator
+
+    const isExist = rooms.find((r) => r.roomId === roomId)
+
+    !isExist && rooms.push(room)
+    return { isExist: !!isExist, creator: creator }
+}
+
+const findRoom = (room) => {
+    const roomId = room.roomId
+    const isExist = rooms.find((r) => r.roomId === roomId)
+
+    return !!isExist
+}
 
 const initializeGame = (sio, socket) => {
     /**
@@ -60,8 +76,6 @@ function videoChatBackend() {
     })
 }
 
-
-
 function playerJoinsGame(idData) {
     /**
      * Joins the given socket to a session with it's gameId
@@ -102,24 +116,25 @@ function playerJoinsGame(idData) {
 }
 
 
-function createNewGame(gameId) {
-    // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
-    this.emit('createNewGame', { gameId: gameId, mySocketId: this.id });
+function createNewGame(gameId, userName) {
 
+    // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
+    this.emit('createNewGame', { gameId: gameId, userName: userName, mySocketId: this.id });
+    addRoom({ gameId: gameId, creator: userName })
     // Join the Room and wait for the other player
     this.join(gameId)
+    console.log(rooms)
 }
 
 function isGameExist(gameId) {
+
+    const isExist = findRoom(gameId)
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
-    this.emit('isGameExist', { gameId: gameId, mySocketId: this.id });
+    this.emit('isGameExist', { isExist: gameId, mySocketId: this.id });
 
     // Join the Room and wait for the other player
     this.join(gameId)
 }
-
-
-
 
 function newMove(move) {
     /**
@@ -137,7 +152,6 @@ function onDisconnect() {
     var i = gamesInSession.indexOf(gameSocket);
     gamesInSession.splice(i, 1);
 }
-
 
 function requestUserName(gameId) {
     io.to(gameId).emit('give userName', this.id);
