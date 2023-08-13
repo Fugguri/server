@@ -72,7 +72,7 @@ bot.on("inline_query", (query) => {
 bot.on("callback_query", (query) => {
   console.log(query)
   queries[query.id] = query;
-  bot.answerCallbackQuery(query.id, { url: `${GAME_URL}new/${query.id}/${query.from.username}` });
+  bot.answerCallbackQuery(query.id, { url: `${GAME_URL}new/${query.id}/${query.from.username}`});
 });
 
 
