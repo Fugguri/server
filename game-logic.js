@@ -21,7 +21,7 @@ const addRoom = (room) => {
 
 const findRoom = (room) => {
     const roomId = room.roomId
-    const isExist = rooms.find((r) => r.roomId === roomId)
+    const isExist = rooms.find((r) => r.roomId === roomId && r.creator !== room.userName)
 
     return !!isExist
 }
@@ -126,11 +126,11 @@ function createNewGame(data) {
     console.log(rooms)
 }
 
-function isGameExist(gameId) {
+function isGameExist(data) {
 
-    const isExist = findRoom(gameId)
+    const isExist = findRoom(data)
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
-    this.emit('isGameExist', { isExist: gameId, mySocketId: this.id });
+    this.emit('isGameExist', { isExist: isExist, mySocketId: this.id });
 
     // Join the Room and wait for the other player
     this.join(gameId)
