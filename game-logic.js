@@ -21,7 +21,8 @@ const addRoom = (room) => {
 
 const findRoom = (room) => {
     const roomId = room.roomId
-    const creator = room.creator
+    const creator = room.userName
+
     console.log("room is", room)
     const isExist = rooms.find((r) => r.roomId === roomId)
     return { isExist: !!isExist, creator: creator }
