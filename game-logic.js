@@ -140,7 +140,6 @@ function isGameExist(data) {
     this.emit('isGameExist', { isExist: isExist.isExist, creator: isExist.creator, gameId: data.gameId, mySocketId: this.id });
 
     // Join the Room and wait for the other player
-    this.join(data.gameId)
 }
 
 function newMove(move) {
