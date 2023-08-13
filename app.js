@@ -74,9 +74,17 @@ bot.on("callback_query", (query) => {
   let gameId = ""
 
   try {
+    console.log("get")
+
     gameId = queries[query.chat_instance]
+    console.log("receive")
+
   } catch {
+    console.log("new")
+
     gameId = queries[query.chat_instance] = uuid_v4()
+    console.log("create")
+
   }
   bot.answerCallbackQuery(query.id, { url: `${GAME_URL}new/${gameId}/${query.from.username}/` });
 });
