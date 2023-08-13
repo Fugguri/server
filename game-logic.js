@@ -130,7 +130,7 @@ function createNewGame(data) {
 
 function isGameExist(data) {
 
-    const isExist = findRoom({ roomId: data.roomId, userName: data.username })
+    const isExist = findRoom(data)
     // console.log(isExist)
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
     this.emit('isGameExist', { isExist: isExist.isExist, creator: isExist.creator, gameId: data.gameId, mySocketId: this.id });
