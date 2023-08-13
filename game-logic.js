@@ -12,7 +12,7 @@ let rooms = []
 const addRoom = (room) => {
     const roomId = room.roomId
     const creator = room.creator
-
+    console.log(room)
     const isExist = rooms.find((r) => r.roomId === roomId && r.creator === creator)
 
     !isExist && rooms.push(room)
@@ -130,7 +130,7 @@ function createNewGame(data) {
 function isGameExist(data) {
 
     const isExist = findRoom(data)
-    console.log(isExist)
+    // console.log(isExist)
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
     this.emit('isGameExist', { isExist: isExist.isExist, creator: isExist.creator, gameId: data.gameId, mySocketId: this.id });
 
