@@ -109,6 +109,16 @@ function createNewGame(gameId) {
     this.join(gameId)
 }
 
+function siGameExist(gameId) {
+    // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
+    this.emit('createNewGame', { gameId: gameId, mySocketId: this.id });
+
+    // Join the Room and wait for the other player
+    this.join(gameId)
+}
+
+
+
 
 function newMove(move) {
     /**
