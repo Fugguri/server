@@ -22,10 +22,16 @@ const addRoom = (room) => {
 const findRoom = (room) => {
     const roomId = room.roomId
     const creator = room.userName
-
+    let userName = ""
     const isExist = rooms.find((r) => r.roomId === roomId)
-    console.log(isExist.creator)
-    return { isExist: !!isExist, creator: isExist }
+    try {
+        userName = isExist.creator
+    }
+    catch {
+        userName = undefined
+
+    }
+    return { isExist: !!isExist, creator: userName }
 }
 
 const initializeGame = (sio, socket) => {
