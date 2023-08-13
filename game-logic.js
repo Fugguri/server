@@ -112,7 +112,7 @@ function createNewGame(gameId) {
 
 function isGameExist(gameId) {
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
-    this.emit('createNewGame', { gameId: gameId, mySocketId: this.id });
+    this.emit('isGameExist', { gameId: gameId, mySocketId: this.id });
 
     // Join the Room and wait for the other player
     this.join(gameId)
