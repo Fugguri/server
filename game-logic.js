@@ -21,9 +21,11 @@ const addRoom = (room) => {
 
 const findRoom = (room) => {
     const roomId = room.roomId
-    const isExist = rooms.find((r) => r.roomId === roomId && r.creator !== room.userName)
+    const creator = room.creator
 
-    return !!isExist
+    const isExist = rooms.find((r) => r.roomId === roomId)
+
+    return { isExist: !!isExist, creator: creator }
 }
 
 const initializeGame = (sio, socket) => {
