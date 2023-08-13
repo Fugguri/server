@@ -122,7 +122,7 @@ function createNewGame(data) {
     this.emit('createNewGame', { gameId: data.gameId, userName: data.creator, mySocketId: this.id });
     addRoom({ gameId: data.gameId, creator: data.creator })
     // Join the Room and wait for the other player
-    this.join(gameId)
+    this.join(data.gameId)
     console.log(rooms)
 }
 
