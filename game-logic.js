@@ -22,7 +22,7 @@ const addRoom = (room) => {
 const removeRoom = (roomId) => {
 
     // console.log(room)
-    const isExist = rooms.find((r) => r.roomId === roomId)
+    const isExist = rooms.find((r) => r.gameSocket === gameSocket)
 
     isExist && rooms.splice(isExist, 1);
     return { isExist: !!isExist, creator: creator }
@@ -169,10 +169,11 @@ function onDisconnect() {
     var i = gamesInSession.indexOf(gameSocket);
     gamesInSession.splice(i, 1);
 
-    var room = io.sockets.adapter.rooms[idData.gameId]
+    const room = rooms.find((r) => r.gameSocket === gameSocket)
+
     console.log(room)
     if (room.length === 1) {
-        removeRoom(idData.gameId)
+        removeRoom(gameSocket)
         console.log(1)
     }
 }
