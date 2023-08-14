@@ -24,7 +24,7 @@ const removeRoom = (roomId) => {
     // console.log(room)
     const isExist = rooms.find((r) => r.roomId === roomId)
 
-    isExist && delete rooms[room]
+    isExist && rooms.splice(isExist, 1);
     return { isExist: !!isExist, creator: creator }
 }
 
@@ -169,6 +169,7 @@ function onDisconnect() {
     gamesInSession.splice(i, 1);
 
     var room = io.sockets.adapter.rooms[idData.gameId]
+    console.log(room)
     if (room.length === 1) {
         removeRoom(idData.gameId)
         console.log(1)
