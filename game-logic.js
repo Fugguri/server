@@ -165,6 +165,7 @@ function newMove(move) {
 }
 
 function onDisconnect() {
+    console.log(this)
     var i = gamesInSession.indexOf(gameSocket);
     gamesInSession.splice(i, 1);
 
