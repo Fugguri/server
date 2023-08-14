@@ -169,13 +169,13 @@ function onDisconnect() {
     var i = gamesInSession.indexOf(gameSocket);
     gamesInSession.splice(i, 1);
 
-    const room = rooms.find((r) => r.gameSocket === gameSocket)
+    // const room = rooms.find((r) => r.gameSocket === gameSocket)
 
-    console.log(room)
-    if (room.length === 1) {
-        removeRoom(gameSocket)
-        console.log(1)
-    }
+    // console.log(room)
+    // if (room.length === 1) {
+    //     removeRoom(gameSocket)
+    //     console.log(1)
+    // }
 }
 
 function requestUserName(gameId) {
