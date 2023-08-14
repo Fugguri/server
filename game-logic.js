@@ -139,7 +139,7 @@ function createNewGame(data) {
     addRoom({ gameId: data.gameId, creator: data.creator, gameSocket: gameSocket })
     // Join the Room and wait for the other player
     this.join(data.gameId)
-
+    console.log(io.sockets.adapter.rooms)
 }
 
 function isGameExist(data) {
