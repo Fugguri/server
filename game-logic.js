@@ -171,6 +171,7 @@ function onDisconnect() {
     var room = io.sockets.adapter.rooms[idData.gameId]
     if (room.length === 1) {
         removeRoom(idData.gameId)
+        console.log(1)
     }
 }
 
