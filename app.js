@@ -3,7 +3,7 @@ const http = require('http')
 const gameLogic = require('./game-logic')
 const TelegramBot = require("node-telegram-bot-api");
 const port = process.env.PORT || 80
-import { v4 as uuid_v4 } from "uuid";
+const { v4 } = require("uuid")
 
 const app = express()
 
@@ -74,7 +74,7 @@ bot.on("callback_query", (query) => {
   console.log(query)
   let gameId = queries[query.chat_instance]
   if (gameId === undefined) {
-    queries[query.chat_instance] = uuid_v4()
+    queries[query.chat_instance] = v4()
     gameId = queries[query.chat_instance]
     console.log("create", gameId)
   }
